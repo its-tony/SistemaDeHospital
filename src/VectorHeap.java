@@ -1,18 +1,36 @@
 import java.util.Vector;
 
+/**
+ * Implementacion de una cola con prioridad usando un heap minimo.
+ *
+ * @param <E> tipo de dato almacenado en el heap
+ */
 public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     private Vector<E> data;
 
+    /**
+     * Crea un heap vacio.
+     */
     public VectorHeap() {
         data = new Vector<>();
     }
 
+    /**
+     * Agrega un valor al heap y lo acomoda en la posicion correcta.
+     *
+     * @param value elemento que se desea insertar
+     */
     @Override
     public void add(E value) {
         data.add(value);
         percolateUp(data.size() - 1);
     }
 
+    /**
+     * Remueve y retorna el elemento con mayor prioridad.
+     *
+     * @return elemento con mayor prioridad o null si no hay datos
+     */
     @Override
     public E remove() {
         if (isEmpty()) {
@@ -30,6 +48,11 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
         return minimo;
     }
 
+    /**
+     * Retorna el primer elemento del heap sin eliminarlo.
+     *
+     * @return elemento con mayor prioridad o null si esta vacio
+     */
     @Override
     public E getFirst() {
         if (isEmpty()) {
@@ -39,11 +62,21 @@ public class VectorHeap<E extends Comparable<E>> implements PriorityQueue<E> {
         return data.get(0);
     }
 
+    /**
+     * Indica si el heap no contiene elementos.
+     *
+     * @return true si esta vacio y false si contiene datos
+     */
     @Override
     public boolean isEmpty() {
         return data.isEmpty();
     }
 
+    /**
+     * Retorna la cantidad de elementos guardados.
+     *
+     * @return tamano actual del heap
+     */
     @Override
     public int size() {
         return data.size();
